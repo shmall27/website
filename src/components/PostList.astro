@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import { type BlogPost } from "../content/config";
+
+const blogPosts = await getCollection("blog");
+
+const seriesList = blogPosts.reduce((acc, post) => {
+  if (post.data.series) {
+    if (!acc[post.data.series]) {
+      acc[post.data.series] = [];
+    }
+    acc[post.data.series].push(post);
+  }
+  return acc;
+}, {});
+
+function comparePostDates(
+  a: { data: BlogPost },
+  b: { data: BlogPost }
+): number {
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateA.getTime() - dateB.getTime();
+}
+---
+
+<ul>
+  {
+    Object.entries(seriesList).map(
+      ([series, posts]: [string, [{ data: BlogPost; slug: string }]]) => (
+        <>
+          <h3>{series}</h3>
+          {posts.sort(comparePostDates).map((post) => (
+            <li>
+              <span>
+                <a href={post.slug}>{post.data.title}</a> --{" "}
+                <span>{post.data.date.toString().slice(0, 10)}</span>
+              </span>
+            </li>
+          ))}
+        </>
+      )
+    )
+  }
+</ul>

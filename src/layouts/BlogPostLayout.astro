@@ -1,0 +1,18 @@
+---
+import "../styles/BlogPost.css";
+const { frontmatter } = Astro.props;
+---
+
+<head>
+  <title>{frontmatter.title}</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <article>
+    <h1 class="title-header">{frontmatter.title}</h1>
+    <p class="date-header">{frontmatter.date.toString().slice(0, 10)}</p>
+    <h4><em>{frontmatter.subtitle}</em></h4>
+    <hr />
+    <slot />
+  </article>
+</body>

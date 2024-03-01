@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Intconsolata";
+    src: url("/fonts/Intconsolata.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+nav {
+    display: flex;
+    height: 1.5em;
+}
+
+header {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header a {
+    font-size: 18px;
+    color: #B4B4B8;
+    text-decoration: none !important;
+}
+
+.spacer {
+    margin: auto 4px auto 4px;
+    background-color: #B4B4B8;
+    width: 1px;
+    height: 75%;
+}
