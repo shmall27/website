@@ -10,6 +10,12 @@ article {
     width: 50%;
 }
 
+@media (max-width: 768px) {
+    article {
+        width: 80%;
+    }
+}
+
 @font-face {
     font-family: "Intconsolata";
     src: url("/fonts/Intconsolata.ttf") format("ttf");
@@ -18,8 +24,14 @@ article {
     font-display: swap;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    line-height: 1.1em;
+}
+
 h1 {
-    width: max-content;
     font-size: 2rem;
     padding: 1rem 2rem 1rem 2rem;
     background-color: white;
@@ -28,14 +40,12 @@ h1 {
 }
 
 h3 {
-    width: max-content;
     padding: 2px 4px 2px 4px;
     background-color: #0000FF;
     color: #C7C8CC;
 }
 
 h4 {
-    width: max-content;
     color: #B4B4B8;
 }
 
