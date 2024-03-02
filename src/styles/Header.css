@@ -17,6 +17,12 @@ header {
     margin-right: auto;
 }
 
+@media (max-width: 768px) {
+    header {
+        width: 80%;
+    }
+}
+
 header a {
     font-size: 18px;
     color: #B4B4B8;
