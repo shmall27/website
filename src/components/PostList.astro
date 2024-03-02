@@ -30,14 +30,21 @@ function comparePostDates(
       ([series, posts]: [string, [{ data: BlogPost; slug: string }]]) => (
         <>
           <h3>{series}</h3>
-          {posts.sort(comparePostDates).map((post) => (
-            <li>
-              <span>
-                <a href={post.slug}>{post.data.title}</a> --{" "}
-                <span>{post.data.date.toString().slice(0, 10)}</span>
-              </span>
-            </li>
-          ))}
+          {posts.sort(comparePostDates).map((post) => {
+            const date = new Date(post.data.date);
+            const year = date.getUTCFullYear();
+            const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+            const day = date.getUTCDate().toString().padStart(2, "0");
+            const dateString = `${year}-${month}-${day}`;
+            return (
+              <li>
+                <span>
+                  <a href={post.slug}>{post.data.title}</a> --{" "}
+                  <span>{dateString}</span>
+                </span>
+              </li>
+            );
+          })}
         </>
       )
     )
