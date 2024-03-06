@@ -20,7 +20,7 @@ function comparePostDates(
 ): number {
   const dateA = new Date(a.data.date);
   const dateB = new Date(b.data.date);
-  return dateA.getTime() - dateB.getTime();
+  return dateB.getTime() - dateA.getTime();
 }
 ---
 
@@ -39,8 +39,10 @@ function comparePostDates(
             return (
               <li>
                 <span>
-                  <a href={post.slug}>{post.data.title}</a> --{" "}
-                  <span>{dateString}</span>
+                  <a class="post-list-item" href={post.slug}>
+                    {post.data.title}
+                  </a>{" "}
+                  -- <span>{dateString}</span>
                 </span>
               </li>
             );
