@@ -5,8 +5,38 @@ import "../styles/Header.css";
 <header>
   <nav>
     <a href="/">Sam Hall</a>
-    <div class="spacer"></div>
+    <div class="vert-spacer"></div>
     <a href="mailto:s@muel.email">s@muel.email</a>
-    <div class="spacer"></div>
+    <div class="vert-spacer"></div>
+    <div class="dropdown">
+      <div id="dropdownToggle">@shmall27</div>
+      <div class="dropdown-content">
+        <div class="hor-spacer"></div>
+        <div>
+          <a href="https://github.com/shmall27">Github</a>
+        </div>
+        <div class="hor-spacer"></div>
+        <div>
+          <a href="https://twitter.com/Shmall27">Twitter</a>
+        </div>
+        <div class="hor-spacer"></div>
+      </div>
+    </div>
+    <div class="vert-spacer"></div>
   </nav>
 </header>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const toggleDropdown = () => {
+      const dropdownContent = document.querySelector('.dropdown-content');
+      if (dropdownContent) {
+        dropdownContent.classList.toggle('show');
+      }
+    };
+
+    const dropdownToggle = document.getElementById('dropdownToggle');
+    if (dropdownToggle) {
+      dropdownToggle.addEventListener('click', toggleDropdown);
+    }
+  });
+</script>

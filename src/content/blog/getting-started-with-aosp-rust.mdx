@@ -8,6 +8,8 @@ issue: 2
 tags: ["aosp", "rust"]
 ---
 
+When I started playing with the AOSP source code, I read a bunch of fragmented documentation most of which I tried unsuccessfully stringing together with ChatGPT. In fact, lots of ChatGPT's recommendations led me astray, so I wanted to share a more tutorial-style guide on doing practical things in an AOSP module.
+
 ### Hello Android
 
 The quickest way to get started with writing an AOSP module in Rust is to create a new directory at the top level of your AOSP source code. Let's call it `hello-android`. This new directory is where your module will live. All AOSP modules require an `Android.bp` file to tell the build system how to build your module.
@@ -38,6 +40,8 @@ Some things to note: the AOSP clippy configuration requires the comments in the 
 The first step in getting this running on the phone is to run `m hello_android` which tells the Soong build system to build just your newly defined module. You can also cd into the directory that has your `Android.bp` file and simply run `mm` which will do the same thing. This will create an executable file inside of the out directory here: `$ANDROID_PRODUCT_OUT/system/bin/hello_android` where `ANDROID_PRODUCT_OUT` is `out/target/product/vsoc_x86_64`, assuming you're using the cuttlefish emulator.
 
 With the executable now built on your development computer, you need to push it onto the device in order to run it. You can run `adb push "$ANDROID_PRODUCT_OUT/system/bin/hello_android" /data/local/tmp` to get the executable in a temp directory on the emulator. To call it, just run `adb shell /data/local/tmp/hello_android`. You should see "Hello Android" in the terminal.
+
+### Using AOSP Rust Libraries
 
 Now technically, that's an Android module written in Rust, but I want to go over an example where we pull in a library that already exists elsewhere in the AOSP. The Android build system is hermetic, ensuring that dependencies will continue working together across builds. If you attempt to bring in a new library, you have to make sure it will work with the dependency version that are already present in your build.
 
@@ -96,6 +100,8 @@ rust_binary {
 ```
 
 Now the `crate_name` in rusqlite's `Android.bp` file comes into play when we get into importing it in our Rust code. Let's use this library to read the SMS database.
+
+### Using Rusqlite to Read Private Databases
 
 First, we should create a new directory inside of our `hello-android` folder and call it `lib`. `cd lib` and create a file named `db_ingest.rs`. We're going to use the rusqlite client to read the phone's SMS database.
 
@@ -197,6 +203,8 @@ We first get a connection by passing the database's path as a `&str` to `Connect
 
 Finally, we execute the query with `query_map`. The empty brackets signify that we aren't passing any variables to our SQL query (these would replace "?" in the raw query string). The second parameter is a function describing how to handle an individual row. In our case, it's structuring it as a `SmsMessage` in our `from_row` implementation.
 
+### Putting It All Together
+
 Let's now integrate our new library with our existing `main.rs` file. Since we already defined and included the library in our `Android.bp` file, we can now simply `use` it by referencing its `crate_name` from the `rust_library` definition. Our new `src/main.rs` file will look like this:
 
 ```rust
@@ -218,6 +226,6 @@ fn main() {
 }
 ```
 
-Remember, you're SMS database is likely empty assuming you're using the emulator, so before trying to run this, you should populate it with some messages first.
+Remember, your SMS database is likely empty assuming you're using the emulator, so before trying to run this, you should populate it with some messages first.
 
 Once you have some messages to test it on, you can again run `m hello_android` to build the binary. This will automatically also build its dependencies. Then `adb push "$ANDROID_PRODUCT_OUT/system/bin/hello_android" /data/local/tmp` followed by `adb shell /data/local/tmp/hello_android`. Once you run the shell command, you will likely get an error about not having the proper permission to access this database. You can run `adb root && adb remount` to restart the adb daemon with root permissions and try again after restarting the emulated device. Now you should be able to see all of the test SMS messages you've sent.
