@@ -12,7 +12,15 @@ tags:
   - aidl
   - daemon
 ---
-### What is "AIDL"
+### What is AIDL?
 
-AIDL stands for Android Interface Definition Language; it is Android's mechanism for doing interprocess communication (IPC). We will be writing an AIDL server to implement our daemon. This will come in handy when we want to send events from framework level system service to our "backend" code to spawn new processes. For example, the NotificationManagerService can send information about notifications to our own code that we will write in Rust.
+AIDL stands for Android Interface Definition Language; it is Android's definition language for interprocess communication (IPC). We will be writing an AIDL server to implement our daemon. This will come in handy when we want to send events from framework level system service to our "backend" code to spawn new processes. For example, the NotificationManagerService can send information about notifications to our own code that we will write in Rust. The communication language between these processes is AIDL.
+
+### How does Android do IPC?
+
+IPC is important 
+
+
+
+
 
