@@ -107,6 +107,6 @@ Once your machine has finished rebooting, navigate back to the AOSP source folde
 
 Cuttlefish runs on port 8443. If you're running this on the cloud, you're going to need to port-forward this endpoint so you can see the emulated device visual. You can simply run: `ssh -L 8443:localhost:8443 <remote-server-address>` (assuming you want to use the 8443 port locally as well). You should now be able to see a screen that looks like this if you visit localhost:8443:
 
-![Screenshot of a browser window with Cuttlefish running](../../assets/cuttlefish-emulator.png)
+![Screenshot of a browser window with Cuttlefish running](../../../public/images/cuttlefish-emulator.png)
 
 If you see this screen, it means you're ready to move on to writing an AOSP module that we can run on our new emulator. In the next post, we'll go over getting started with writing one in Rust.
