@@ -1,7 +1,10 @@
 html {
     background-color: #F2EFE5;
-    font-family: sans-serif;
-    line-height: 1.5em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #about + p {
@@ -30,50 +33,59 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    display: inline-block;
     max-width: 100%;
     box-sizing: border-box;
     margin-block-start: 0;
     margin-block-end: 0.5em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 h1 {
-    width: max-content;
-    font-size: 2rem;
-    padding: 1rem 2rem 1rem 2rem;
-    background-color: white;
-    background-color: #0000FF;
-    color: #C7C8CC;
+    font-size: 1.75rem;
+    color: #222;
+    margin-bottom: 1.5rem;
 }
 
 h3 {
-    padding: 2px 4px 2px 4px;
-    background-color: #0000FF;
-    color: #C7C8CC;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0000FF;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 h4 {
-    color: #B4B4B8;
+    color: #888;
+    font-weight: 400;
 }
 
 strong {
-    color: #B4B4B8;
+    color: #333;
+    font-weight: 600;
 }
 
-p, li{
-    color: #444444;
+p, li {
+    color: #444;
 }
 
 a {
-    color: #444444;
+    color: #222;
+    text-decoration: underline;
     text-decoration-color: #0000FF;
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease;
+}
+
+a:hover {
+    text-decoration-color: #222;
 }
 
 .date-header {
-    color: #F2EFE5;
-    width: max-content;
-    background-color: #B4B4B8;
-    padding: 2px 4px 2px 4px;
+    color: #888;
+    font-size: 0.85rem;
 }
 
 ul {
@@ -82,13 +94,17 @@ ul {
 
 ul li {
     list-style-type: none;
+    margin-bottom: 0.5rem;
 }
 
 .post-list-item {
     position: relative;
-    padding: 2px 4px;
+    display: inline-block;
+    padding: 3px 6px;
+    text-decoration: none !important;
+    color: #222;
     overflow: hidden;
-    transition: color 0.5s ease;
+    transition: color 0.35s ease;
 }
 
 .post-list-item::before {
@@ -99,7 +115,7 @@ ul li {
     width: 100%;
     height: 100%;
     background-color: #0000FF;
-    transition: transform 0.5s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     transform: scaleY(0);
     transform-origin: bottom;
     z-index: -1;
@@ -111,4 +127,10 @@ ul li {
 
 .post-list-item:hover {
     color: #F2EFE5;
+}
+
+.post-date {
+    color: #999;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
 }

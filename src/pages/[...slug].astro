@@ -10,8 +10,22 @@ export async function getStaticPaths() {
 }
 const { entry }: any = Astro.props;
 const { Content } = await entry.render();
+const description = entry.data.description ?? entry.data.subtitle;
+const canonical = new URL(entry.slug, Astro.site).href;
 export const prerender = true;
 ---
 
-<Header />
-<Content />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{entry.data.title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <Header />
+    <Content />
+  </body>
+</html>

@@ -4,6 +4,7 @@ const blogSchema = z.object({
   title: z.string(),
   date: z.date(),
   subtitle: z.string(),
+  description: z.string().optional(),
   series: z.string().optional(),
   issue: z.number().optional(),
   tags: z.array(z.string()).optional(),

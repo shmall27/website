@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samhall.io/sitemap-index.xml

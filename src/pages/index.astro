@@ -3,17 +3,28 @@ import Header from "../components/Header.astro";
 import PostList from "../components/PostList.astro";
 import About from "../components/About.astro";
 import "../styles/Index.css";
+
+const canonical = new URL("/", Astro.site).href;
+const description =
+  "Sam Hall — founder of Wafer Systems. Writing about Android, AOSP, Rust, and agents with system-level privileges.";
+
+export const prerender = true;
 ---
 
 <html lang="en">
   <head>
-    <title>Sam Hall</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sam Hall</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <Header />
-  <div class="content">
-    <About />
-    <PostList />
-  </div>
+  <body>
+    <Header />
+    <div class="content">
+      <About />
+      <PostList />
+    </div>
+  </body>
 </html>

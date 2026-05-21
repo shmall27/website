@@ -26,17 +26,25 @@ header {
 }
 
 header a, header div {
-    font-size: 18px;
-    color: #B4B4B8;
+    font-size: 15px;
+    color: #888;
     text-decoration: none !important;
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+header a:hover {
+    color: #222;
 }
 
 .vert-spacer {
-    margin: auto 4px auto 4px;
-    background-color: #B4B4B8;
-    width: 1px;
-    height: 75%;
+    margin: auto 10px;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.vert-spacer::after {
+    content: "/";
 }
 
 .hor-spacer {

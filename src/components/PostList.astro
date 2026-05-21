@@ -38,12 +38,10 @@ function comparePostDates(
             const dateString = `${year}-${month}-${day}`;
             return (
               <li>
-                <span>
-                  <a class="post-list-item" href={post.slug}>
-                    {post.data.title}
-                  </a>{" "}
-                  -- <span>{dateString}</span>
-                </span>
+                <a class="post-list-item" href={post.slug}>
+                  {post.data.title}
+                </a>
+                <span class="post-date">{dateString}</span>
               </li>
             );
           })}

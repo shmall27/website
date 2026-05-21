@@ -1,7 +1,13 @@
 {
   "name": "samhall.io",
-  "type": "module",
   "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/check": "latest",
+    "@astrojs/cloudflare": "^12",
+    "@astrojs/mdx": "^4",
+    "astro": "^5",
+    "typescript": "^5.3.3"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,11 +15,8 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
-    "@astrojs/check": "^0.5.5",
-    "@astrojs/cloudflare": "^9.0.2",
-    "@astrojs/mdx": "^2.1.1",
-    "astro": "^4.4.4",
-    "typescript": "^5.3.3"
+  "type": "module",
+  "devDependencies": {
+    "@astrojs/sitemap": "latest"
   }
 }
