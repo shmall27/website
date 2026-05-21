@@ -95,6 +95,10 @@ ul {
 ul li {
     list-style-type: none;
     margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
 }
 
 .post-list-item {
@@ -132,5 +136,5 @@ ul li {
 .post-date {
     color: #999;
     font-size: 0.85rem;
-    margin-left: 0.5rem;
+    white-space: nowrap;
 }
